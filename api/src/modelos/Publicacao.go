@@ -38,6 +38,6 @@ func (publicacao *Publicacao) validar() error {
 }
 
 func (publicacao *Publicacao) formatar() {
-	publicacao.Titulo = strings.TrimSpace(publicacao.Titulo)
-	publicacao.Conteudo = strings.TrimSpace(publicacao.Conteudo)
+		publicacao.Titulo = strings.TrimSpace(publicacao.Titulo)
+		publicacao.Conteudo = strings.TrimSpace(publicacao.Conteudo)
 }
