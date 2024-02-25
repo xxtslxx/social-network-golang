@@ -58,6 +58,9 @@ func CriarPublicacoes(w http.ResponseWriter, r *http.Request) {
 
 }
 func BuscarPublicacoes(w http.ResponseWriter, r *http.Request) {
+	
+}
+func BuscarPublicacao(w http.ResponseWriter, r *http.Request) {
 	parametros := mux.Vars(r)
 	publicacaoID, erro := strconv.ParseUint(parametros["publicacaoId"], 10, 64)
 	if erro != nil {
@@ -81,9 +84,6 @@ func BuscarPublicacoes(w http.ResponseWriter, r *http.Request) {
 
 	respostas.JSON(w, http.StatusOK, publicacao)
 	
-}
-func BuscarPublicacao(w http.ResponseWriter, r *http.Request) {
-
 }
 func AtualizarPublicacao(w http.ResponseWriter, r *http.Request) {
 
