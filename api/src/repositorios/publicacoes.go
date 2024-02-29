@@ -71,8 +71,8 @@ func (repositorio Publicacoes) Buscar(usuarioID uint64) ([]modelos.Publicacao, e
 	inner join usuarios u on u.id = p.autor_id 
 	inner join seguidores s on p.autor_id = s.usuario_id 
 	where u.id = ? or s.seguidor_id = ?
-	order by 1 desc`, 
-	usuarioID, usuarioID,
+	order by 1 desc`,
+		usuarioID, usuarioID,
 	)
 	if erro != nil {
 		return nil, erro
@@ -100,4 +100,17 @@ func (repositorio Publicacoes) Buscar(usuarioID uint64) ([]modelos.Publicacao, e
 	}
 
 	return publicacoes, nil
+}
+
+func (repositorio Publicacoes) Atualizar(publicacaoID uint64, publicacao modelos.Publicacao) error {
+	statement, erro := repositorio.db.Prepare("update publicacoes set titulo = ?, conteudo = ? where id = ?")
+	if erro != nil {
+		return erro
+	}
+	defer statement.Close()
+
+	if _, erro = statement.Exec(publicacao.Titulo, publicacao.Conteudo, publicacaoID); erro != nil{
+		return erro
+	}
+	return nil
 }
