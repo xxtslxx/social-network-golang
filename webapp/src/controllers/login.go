@@ -20,7 +20,7 @@ func FazerLogin(w http.ResponseWriter, r * http.Request){
 	})
 
 	if erro != nil {
-			respostas.JSON(w, http.StatusBadRequest, respostas.ErroAPI{erro.Error()})
+			respostas.JSON(w, http.StatusBadRequest, respostas.ErroAPI{Erro: erro.Error()})
 			return
 	}
 
@@ -45,5 +45,6 @@ func FazerLogin(w http.ResponseWriter, r * http.Request){
 	}
 	
 	respostas.JSON(w, http.StatusOK, nil)
+
 }
 
